@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Xml.Linq;
+using static System.Reflection.Metadata.BlobBuilder;
 
-List <Book> ListOfBooks= Book.ListOfBooks();
-Book book = ListOfBooks[0];
 
-        while (true)
+
+
+List<IBook> ListOfBooks = Book.ListOfBooks();
+IBook book = ListOfBooks[0];
+List<IBook> ListOfBeforeTaxBooks = Book.ListOfBeforeTaxBooks();
+
+while (true)
 {
     try
     {
@@ -41,7 +46,10 @@ if (Console.ReadLine().ToLower().Equals("yes"))
             double DiscountValue;
             if (!double.TryParse(Console.ReadLine(), out DiscountValue))
                 throw new Exception("InValid discount Value");
-            ListOfBooks = ListOfBooks.Select(c => { book.BookDiscount = DiscountValue; return c; }).ToList();
+
+            ListOfBooks.ForEach(book => {
+                book.BookDiscount= DiscountValue;
+            });
             break;
         }
         catch (Exception)
@@ -50,12 +58,9 @@ if (Console.ReadLine().ToLower().Equals("yes"))
             Console.WriteLine("Invalid Discount Value!");
         }
     }
-    ListOfBooks.ForEach(book => {
-        if (book.BookDiscount != 0)
-            Report.ReportDiscount(book.BookDiscount, book.PriceAfterTax(), book.DiscountAmount());
-        else
-            Report.ReportNoDiscount(book.PriceAfterTax());
-        });
+    ListOfBeforeTaxBooks.ForEach(book => {
+            Report.ReportSelectiveDiscount(book);
+    });
 }
     Console.WriteLine("Press Any key to exit..."); 
 Console.ReadLine();
