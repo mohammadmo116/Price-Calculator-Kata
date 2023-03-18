@@ -7,11 +7,11 @@
         double Price { get; set; }
         double ProductPrice { get; set; }
         int UPC { get; set; }
-
+        double TransportCost { get; set; } 
         decimal DiscountAmount();
         double PriceAfterDiscount();
         double PriceAfterTax();
         decimal TaxAmount();
-
+      
     }
 }

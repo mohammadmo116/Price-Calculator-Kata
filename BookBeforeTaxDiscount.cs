@@ -12,6 +12,7 @@ namespace Price_Calculator_Kata
         public string Name { get; set; }
         public double Price { get; set; }
         public double ProductPrice { get; set; }
+        public double TransportCost { get; set; } = 2.2;
         public int UPC { get; set; }
 
         public BookBeforeTaxDiscount(int UPC, string Name, double Price) 
@@ -20,7 +21,7 @@ namespace Price_Calculator_Kata
             this.Price = Price;
             this.UPC = UPC;
         }
-
+       
         public double PriceAfterTax()
         {
             return Tax.CalculateTax(PriceAfterDiscount()) +PriceAfterDiscount();

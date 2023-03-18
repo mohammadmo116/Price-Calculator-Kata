@@ -10,9 +10,9 @@ namespace Price_Calculator_Kata
     public static class Discount
     {
         public static double UniversalDiscount { get; set; } = 15;
-        public static double CalculateDiscount(double price)
+        public static decimal CalculateDiscount(double price)
         {
-            return (UniversalDiscount * price / 100);
+            return (decimal)(UniversalDiscount * price / 100);
 
         }
     }

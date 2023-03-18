@@ -34,20 +34,29 @@ while (true)
     }
 }
         
-Console.WriteLine("apply Discout To all Products(Yes/No) ?");
-if (Console.ReadLine().ToLower().Equals("yes"))
+Console.WriteLine("apply Discount To all Products(Yes/No) ?");
+
+bool discount = Console.ReadLine().ToLower().Equals("yes");
+
+
+while (true)
 {
-    while (true)
-    {
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine("Enter Discount Amount:");
+ 
         try
         {
-            double DiscountValue;
+        double DiscountValue;
+        if (discount)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Enter Discount Amount:");
+
+
             if (!double.TryParse(Console.ReadLine(), out DiscountValue))
                 throw new Exception("InValid discount Value");
-
-            ListOfBooks.ForEach(book => {
+        }
+        else
+            DiscountValue = 0;
+        ListOfBooks.ForEach(book => {
                 book.BookDiscount= DiscountValue;
             });
             break;
@@ -58,10 +67,15 @@ if (Console.ReadLine().ToLower().Equals("yes"))
             Console.WriteLine("Invalid Discount Value!");
         }
     }
+
     ListOfBeforeTaxBooks.ForEach(book => {
-            Report.ReportSelectiveDiscount(book);
+        
+        if(book.BookDiscount==0  )
+            Report.ExpensesReportNoDiscountNoCost(book);
+        else
+            Report.ExpensesReport(book);
     });
-}
+
     Console.WriteLine("Press Any key to exit..."); 
 Console.ReadLine();
 
