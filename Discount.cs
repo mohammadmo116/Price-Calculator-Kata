@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Price_Calculator_Kata
 {
-    internal class Discount
+    public static class Discount
     {
+        public static double UniversalDiscount { get; set; } = 15;
+        public static double CalculateDiscount(double price)
+        {
+            return (UniversalDiscount * price / 100);
+
+        }
     }
 }

@@ -8,6 +8,13 @@
         double ProductPrice { get; set; }
         int UPC { get; set; }
 
+<<<<<<< HEAD
    
+=======
+        decimal DiscountAmount();
+        double PriceAfterDiscount();
+        double PriceAfterTax();
+        decimal TaxAmount();
+>>>>>>> Selective
     }
 }
