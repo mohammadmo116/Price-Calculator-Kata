@@ -7,7 +7,7 @@ using System.Transactions;
 
 namespace Price_Calculator_Kata
 {
-    public class BookAfterTaxDiscount : IBookDiscount,IBook
+    public class BookAfterTaxDiscount : IBook
     {
         public double BookDiscount { get; set; }
         public string Name { get; set; }
