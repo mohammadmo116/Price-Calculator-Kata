@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Price_Calculator_Kata
 {
+
     public static class Tax
     {
         public static double TaxRate { get; set; } = 20.0;
@@ -18,5 +19,6 @@ namespace Price_Calculator_Kata
         }
        
     }
+
 }
 
